@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stop Watch</title>
+    <style>
+        div#time {
+            width: 40%;
+            height: 40%;
+            border: 3px solid blue;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time"> 00:00 </div>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn" disabled="true">Stop</button>
+    <script>
+        let time = document.getElementById('time');
+        let start = document.getElementById('startBtn');
+        let stop = document.getElementById('stopBtn');
+        let detectTime;
+
+        function disableButton() {
+
+            if (stop.getAttribute("disabled")) {
+                stop.removeAttribute("disabled");
+                start.setAttribute("disabled", "true");
+            } else {
+                start.removeAttribute("disabled");
+                stop.setAttribute("disabled", "true");
+            }
+        }
+
+        function startWatch() {
+
+            let isReadyToDetectTime = start.getAttribute("disabled");
+            // let seconds = 0;
+            // let minutes = 0;
+
+            detectTime = setInterval(function () {
+
+                if (seconds == 59) {
+                    time.textContent = minutes + ":" + seconds;
+                    seconds = 0;
+                    minutes++;
+                } else {
+
+                    if ((seconds < 10) && (minutes === 0)) {
+                        time.textContent = `0:0${seconds}`;
+                        seconds++;
+                    } else {
+                        if ((seconds < 10) && (minutes > 0)) {
+                            time.textContent = `${minutes}:0${seconds}`;
+                            seconds++;
+                        } else {
+                            time.textContent = `${minutes}:${seconds}`;
+                            seconds++;
+                        }
+                    }
+                }
+            }, 1000), minutes = 0, seconds = 0;
+
+        }
+
+        function stopWatch() {
+            clearInterval(detectTime);
+        }
+
+        start.addEventListener("click", disableButton);
+        start.addEventListener("click", startWatch);
+        stop.addEventListener("click", disableButton);
+        stop.addEventListener("click", stopWatch);
+
+    </script>
+
+</body>
+
+</html>

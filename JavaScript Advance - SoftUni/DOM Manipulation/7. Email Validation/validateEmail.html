@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Focus</title>
+    <style>
+        .error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="email">Enter email:</label>
+    <input id="email" type="text" />
+    <script>
+        //Email for this task <name>@<domain>.<extension>
+        let email = document.getElementById('email');
+
+        email.addEventListener("blur", getErrorStyle);
+        email.addEventListener("focus", removeErrorStyle);
+
+        function getErrorStyle() {
+
+            let emailValue = document.getElementById('email').value;
+            let simpleEmailValidationPattern = /\w+@\w+\.\w+/g
+            let isValidEmail = simpleEmailValidationPattern.test(emailValue);
+
+            if (isValidEmail) {
+                email.className = "";
+            } else {
+                email.className = "error";
+            }
+        }
+
+        function removeErrorStyle() {
+            email.className = "";
+        }
+
+    </script>
+</body>
+
+</html>

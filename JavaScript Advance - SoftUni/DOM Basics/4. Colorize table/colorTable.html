@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Color table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Town</th>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Sofia</td>
+        </tr>
+        <tr>
+            <td>Nick</td>
+            <td>Varna</td>
+        </tr>
+        <tr>
+            <td>Didi</td>
+            <td>Ruse</td>
+        </tr>
+        <tr>
+            <td>Tedy</td>
+            <td>Varna</td>
+        </tr>
+    </table>
+    <button onclick="colorize()">Colorize</button>
+
+    <script>
+        function colorize() {
+            let allTr = document.querySelectorAll('tr');
+            let index;
+
+            for (index = 1; index < allTr.length; index++) {
+                if ((index % 3 === 0) || (index == 1)) {
+                    allTr[index].style.backgroundColor = "rgb(0,128,128)";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

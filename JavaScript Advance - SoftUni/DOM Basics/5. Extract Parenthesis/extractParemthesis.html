@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Extract paranthesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p id="content">
+        Rakiya (Bulgarian liquor) is very popular in Bulgaria. Its one of strongest (alcoholic drink) there. Bulgarian made rakiya
+        from fruits (plums or grapes).
+        <button onclick='extractTextWithParenthesis()'>Extract text</button>
+    </p>
+    <script>
+        function extractTextWithParenthesis() {
+
+            let text = document.getElementById('content').innerText;
+            let pattern = /\(([^)]+)\)/g;
+            let result = [];
+            let match = pattern.exec(text);
+
+            while (match) {
+                result.push(match[1]);
+                match = pattern.exec(text);
+            }
+
+            console.log(result.join('; '));
+        }
+    </script>
+</body>
+</html>
